@@ -1,7 +1,10 @@
 import Head from "next/head";
-import Dashboard from "./dashboard";
+import TabelProduct from "../components/TabelProduct";
 
-export default function Home() {
+
+
+export default function Home({products}) {
+  
   return (
     <div>
       <Head>
@@ -11,10 +14,19 @@ export default function Home() {
       </Head>
 
       <main>
-       <Dashboard />
+       <TabelProduct products={products}/>
       </main>
 
       <footer></footer>
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const res = await fetch('https://dummyjson.com/products');
+  const data = await res.json();
+
+  return {
+    props: {products: data}
+  }
+} 

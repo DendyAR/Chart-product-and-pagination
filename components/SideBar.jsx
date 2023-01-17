@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const SideBar = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className="md:flex">
+    
       <div className="flex flex-col md:h-screen p-3 bg-white shadow w-full md:w-72">
         <div className="space-y-3">
           <div className="md:hidden">
@@ -51,8 +52,8 @@ const SideBar = () => {
           >
             <ul className="pt-2 pb-4 space-y-1 text-sm">
               <li className="rounded-sm">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-200 transition-all duration-300"
                 >
                   <svg
@@ -70,11 +71,11 @@ const SideBar = () => {
                     />
                   </svg>
                   <span>Dashboard</span>
-                </a>
+                </Link>
               </li>
               <li className="rounded-sm">
-                <a
-                  href="#"
+                <Link
+                  href="/chart"
                   className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-200 transition-all duration-300"
                 >
                   <svg
@@ -92,57 +93,13 @@ const SideBar = () => {
                     />
                   </svg>
                   <span>Chart</span>
-                </a>
+                </Link>
               </li>
               
             </ul>
           </div>
         </div>
       </div>
-
-      <div className="w-full px-2 md:px-10 py-10">
-        <div className="flex justify-end items-end py-5">
-          <input
-            type="text"
-            placeholder="Search Product"
-            className="border-2 border-blue-100 p-1 outline-none indent-2 rounded-md"
-          />
-        </div>
-
-        <div className="relative overflow-x-auto">
-          <table className="w-full border-collapse border border-blue-100">
-            <thead className="text-xs text-gray-700 uppercase bg-slate-100">
-              <tr>
-                <th scope="col" className="px-6 py-3 border border-blue-100">
-                  Product name
-                </th>
-                <th scope="col" className="px-6 py-3 border border-blue-100">
-                  Barnd
-                </th>
-                <th scope="col" className="px-6 py-3 border border-blue-100">
-                  Price
-                </th>
-                <th scope="col" className="px-6 py-3 border border-blue-100">
-                  Stock
-                </th>
-                <th scope="col" className="px-6 py-3 border border-blue-100">
-                  Stock
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="bg-white text-xs md:text-base">
-                <td className="px-6 py-4 border border-blue-100">Sliver</td>
-                <td className="px-6 py-4 border border-blue-100">Laptop</td>
-                <td className="px-6 py-4 border border-blue-100">$2999</td>
-                <td className="px-6 py-4 border border-blue-100">$2999</td>
-                <td className="px-6 py-4 border border-blue-100">$2999</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
   );
 };
 
