@@ -4,33 +4,31 @@ import SideBar from "../../components/SideBar";
 import { paginate } from "../../helper/paginate";
 
 const Index = ({ products }) => {
-  const data = products.carts;
-  const pagesCart = data.find(x => x).products
-  
+  const data = products
 
-  console.log(data.find(x => x).products.length);
+  // console.log(data)
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
 
-    const onPageChange = (page) => {
-      setCurrentPage(page)
-    }
+  const onPageChange = (page) => {
+    setCurrentPage(page)
+  }
 
-    const paginatedProduct = paginate(data.find(x => x).products, currentPage, pageSize)
+  const paginatedProduct = paginate(data.products, currentPage, pageSize)
 
   return (
     <div className="md:flex">
       <SideBar />
       <div className="w-full px-2 md:px-10 py-10">
         <div className="flex flex-col">
-          <h3>Cart ID: {data[0].id}</h3>
+          <h3>Cart ID: {data.id}</h3>
           <div className="flex flex-col py-10">
           <h3>Details</h3>
             <div className="w-full md:w-1/2 bg-blue-100 p-6 border-2 border-gray-400 grid grid-rows-2 grid-flow-col gap-10 justify-between items-start text-start">
               <div className="text-base font-normal">
                 <h3>
-                  UserID: <span>{data[0].userId}</span>
+                  UserID: <span>{data.userId}</span>
                 </h3>
               </div>
               <div>
@@ -40,12 +38,12 @@ const Index = ({ products }) => {
               </div>
               <div>
                 <h3>
-         #Of Items: <span>{data[0].totalProducts}</span>
+         #Of Items: <span>{data.totalProducts}</span>
                 </h3>
               </div>
               <div>
                 <h3>
-                  Total Amount: <span>{data[0].total}</span>
+                  Total Amount: <span>{data.total}</span>
                 </h3>
               </div>
             </div>
@@ -91,7 +89,7 @@ const Index = ({ products }) => {
           </table>
         </div>
         <div className="flex justify-end items-end mt-10">
-          <Pagination items={pagesCart.length} currentPage={currentPage} pageSize={pageSize} onPageChange={onPageChange} />
+          <Pagination items={data.products.length} currentPage={currentPage} pageSize={pageSize} onPageChange={onPageChange} />
           </div>
       </div>
     </div>
@@ -100,7 +98,7 @@ const Index = ({ products }) => {
 export default Index;
 
 export const getStaticProps = async () => {
-  const res = await fetch("https://dummyjson.com/carts");
+  const res = await fetch("https://dummyjson.com/carts/1");
   const data = await res.json();
 
   return {

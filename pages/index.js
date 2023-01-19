@@ -1,10 +1,8 @@
+import axios from "axios";
 import Head from "next/head";
 import TabelProduct from "../components/TabelProduct";
 
-
-
-export default function Home({products}) {
-  
+export default function Home({ products, value }) {
   return (
     <div>
       <Head>
@@ -14,7 +12,7 @@ export default function Home({products}) {
       </Head>
 
       <main>
-       <TabelProduct products={products}/>
+        <TabelProduct products={products} value={value} />
       </main>
 
       <footer></footer>
@@ -23,10 +21,10 @@ export default function Home({products}) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('https://dummyjson.com/products');
-  const data = await res.json();
+  const value = "";
+  const res = await axios.get(`https://dummyjson.com/products/${value}`);
 
   return {
-    props: {products: data}
-  }
-} 
+    props: { products: res.data, value: value },
+  };
+};
