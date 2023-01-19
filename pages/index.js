@@ -20,7 +20,7 @@ export default function Home({ products, value }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const value = "";
   const res = await axios.get(`https://dummyjson.com/products/${value}`);
 
